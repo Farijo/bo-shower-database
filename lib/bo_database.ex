@@ -1,18 +1,12 @@
 defmodule BoDatabase do
-  @moduledoc """
-  Documentation for BoDatabase.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> BoDatabase.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def fetch_races do
+    BoDatabase.Race |> BoDatabase.Repo.all
   end
+
+  def fetch_races_name do
+    fetch_races()
+    |> List.foldl([], fn(x, acc) -> [x.name|acc] end)
+  end
+
 end
